@@ -1,0 +1,44 @@
+{% extends "core/layout.html" %}
+{% load static %}
+
+{% block title %}Contact Us - BookHive{% endblock %}
+
+{% block content %}
+<!-- Main container with a top margin of 4 -->
+
+<div class="container mt-4">
+    <h1>Contact Us</h1>
+    <p>If you have any questions, concerns, or feedback, feel free to reach out to us using the form below or through our contact information. We look forward to hearing from you!</p>
+    
+    <!-- row for responsive layout -->
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Contact form -->
+            <form>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h2>Our Contact Information</h2>
+            <p><strong>Address:</strong> 123 Book St, Literature City, 12345</p>
+            <p><strong>Phone:</strong> (123) 456-7890</p>
+            <p><strong>Email:</strong> contact@bookhive.com</p>
+            <h2>Find Us Here</h2>
+            <!-- Google Maps iframe to embed a map with the location of the business, with attributes to set width, height, border, fullscreen, and loading behavior -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.045194805493!2d-122.41941538468176!3d37.77492927975954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858064d6d57791%3A0x9179f0a3f4e89112!2s123%20Book%20St%2C%20San%20Francisco%2C%20CA%2094102%2C%20USA!5e0!3m2!1sen!2s!4v1620817512205!5m2!1sen!2s" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+</div>
+{% endblock %}

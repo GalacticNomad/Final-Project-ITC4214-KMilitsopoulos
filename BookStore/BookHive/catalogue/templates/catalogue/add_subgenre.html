@@ -1,0 +1,10 @@
+{% extends "core/layout.html" %}
+
+{% block content %}
+<h2>Add SubGenre</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Add SubGenre</button>
+</form>
+{% endblock %}

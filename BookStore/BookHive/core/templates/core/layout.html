@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- Using double curly brackets in the rest of the files for security preventing cross site scripting attacks-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A comprehensive book catalogue">
+    <title>{% block title %}BookHive{% endblock %}</title>
+    {% load static %}
+    <!-- Link to external stylesheets -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <!-- Link to Font Awesome CSS (loaded from a CDN) in three different versions -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Link to custom JavaScript files -->
+    <script src="{% static 'js/carousel.js' %}" defer></script>
+    <script src="{% static 'js/darkmode.js' %}" defer></script>
+    <!-- Link to external JavaScript libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <script src="{% static 'js/cart.js' %}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js" defer></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" defer></script>
+    {% block scripts %}{% endblock %}
+</head>
+<body>
+    <header>
+        <!-- Navigation bar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'images/BookHive_logo.png' %}" alt="BookHive Logo" class="navbar-logo">
+            </a>
+            <!-- Toggle button for thinner or mobile devices -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Navigation menu -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'catalogue:genre_list' %}">Genres</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <!-- Only logged in user can access the profile and logout else they see login and register -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-user-circle"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+                                <a class="dropdown-item" href="{% url 'users:enhanced_profile' %}">Profile</a>
+                                {% if user.profile.is_moderator %}
+                                <!-- Only user profile with the is_moderator = True have access to the moderator panel -->
+                                    <a class="dropdown-item" href="{% url 'catalogue:moderator_panel' %}">Moderator Panel</a>
+                                {% endif %}
+                                <a class="dropdown-item" href="{% url 'users:logout' %}">Logout</a>
+                            </div>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'users:login' %}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'users:register' %}">Register</a>
+                        </li>
+                    {% endif %}      
+
+                </ul>
+                <!-- search form to type and submit the search the user wants -->
+                <form id="search-form" class="form-inline my-2 my-lg-0" action="{% url 'catalogue:book_search' %}" method="get">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search by title or author" aria-label="Search" name="q" id="search-input">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                <!-- The shooping card with a dropdown to see the items you have chosen and a button to simulate a purchase -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="cart" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="cartDropdown">
+                        <ul id="cart-items"></ul>
+                        <button id="simulate-purchase" class="btn btn-primary">Simulate Purchase</button>
+                    </div>
+                </li>
+            </div>
+        </nav>
+    </header>
+    <main class="container mt-4">
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="bg-dark text-white text-center py-3">
+        <p>Follow us on <a href="#" class="text-white">Social Media</a></p>
+        <button id="dark-mode-toggle" class="btn btn-secondary">Toggle Dark Mode</button>
+        <p>&copy; 2024 BookHive</p>
+    </footer>
+</body>
+</html>

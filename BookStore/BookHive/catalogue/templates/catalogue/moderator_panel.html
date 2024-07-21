@@ -1,0 +1,54 @@
+{% extends "core/layout.html" %}
+
+{% block content %}
+<h2>Moderator Panel</h2>
+<!-- Button to add new books genres or subgenres-->
+<a href="{% url 'catalogue:add_book' %}" class="btn btn-success mb-3">Add New Book</a>
+<a href="{% url 'catalogue:add_genre' %}" class="btn btn-success mb-3">Add New Genre</a>
+<a href="{% url 'catalogue:add_subgenre' %}" class="btn btn-success mb-3">Add New SubGenre</a>
+
+<h3>Books</h3>
+<ul class="list-group mb-3">
+    {% for book in books %}
+    <!-- Loop through each book in the books queryset -->
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ book.title }} by {{ book.author }}
+            <div>
+                <!-- Button to edit a book or delete it -->
+                <a href="{% url 'catalogue:edit_book' book.id %}" class="btn btn-primary btn-sm">Edit</a>
+                <a href="{% url 'catalogue:delete_book' book.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+
+<h3>Genres</h3>
+<ul class="list-group mb-3">
+    {% for genre in genres %}
+    <!-- Loop through each genre in the genres queryset -->
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ genre.name }}
+            <div>
+                <a href="{% url 'catalogue:delete_genre' genre.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+
+<h3>SubGenres</h3>
+<ul class="list-group mb-3">
+    <!-- Loop through each subgenre in the subgenres queryset -->
+    {% for subgenre in subgenres %}
+
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <!-- Display the subgenre name and its parent genre -->
+            {{ subgenre.name }} ({{ subgenre.genre.name }})
+            
+            <div>
+                <!-- Button to delete the subgenre -->
+                <a href="{% url 'catalogue:delete_subgenre' subgenre.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

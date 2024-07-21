@@ -1,0 +1,26 @@
+{% extends "core/layout.html" %}
+
+<!-- Sets the page title dynamically based on the genre name -->
+{% block title %}{{ genre.name }} Sub-Genres - BookHive{% endblock %}
+
+{% block content %}
+<h1>{{ genre.name }} Sub-Genres</h1>
+<div class="container">
+    <div class="row">
+        <!-- Loop through each subgenre in the subgenres queryset -->
+        {% for subgenre in subgenres %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ subgenre.name }}</h5>
+                        <p class="card-text">Explore books in the {{ subgenre.name }} sub-genre.</p>
+                        <a href="{% url 'catalogue:book_list' subgenre.id %}" class="btn btn-primary">View Books</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <a href="javascript:history.back()" class="btn btn-secondary mt-3">Go Back</a>
+</div>
+{% endblock %}
+

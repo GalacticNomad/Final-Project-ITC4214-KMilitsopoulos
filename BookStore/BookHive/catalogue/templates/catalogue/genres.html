@@ -1,0 +1,24 @@
+{% extends "core/layout.html" %}
+
+{% block title %}Genres - BookHive{% endblock %}
+
+{% block content %}
+<h1>Genres</h1>
+<div class="container">
+    <div class="row">
+        {% for genre in genres %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ genre.name }}</h5>
+                        <p class="card-text">Explore books in the {{ genre.name }} genre.</p>
+                        <a href="{% url 'catalogue:subgenre_list' genre.id %}" class="btn btn-primary">View Sub-genres</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <a href="javascript:history.back()" class="btn btn-secondary mt-3">Go Back</a>
+</div>
+{% endblock %}
+

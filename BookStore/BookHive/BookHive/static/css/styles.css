@@ -1,0 +1,242 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: lightblue;
+}
+
+
+.abril-fatface-regular {
+    font-family: "Abril Fatface", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+h1, h2 {
+    font-family: "Abril Fatface";
+    color:#000000;
+}
+  
+
+
+
+.nav-item {
+    margin: 0 10px;  
+}
+
+.navbar {
+    background-color: #38251c !important;
+}
+
+.navbar-logo {
+    height: 125px;
+    width: auto;
+}
+
+main {
+    padding: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.profile-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.profile-header h2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.profile-bio {
+    max-width: 600px;
+    text-align: center;
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.profile-update-form {
+    width: 100%;
+    max-width: 600px;
+}
+
+.profile-update-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-update-form button {
+    align-self: center;
+    margin-top: 20px;
+}
+
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 1em;
+    color: #666;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.rating .fa-star {
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.rating .fa-star.checked {
+    color: #f39c12;
+}
+
+.carousel-item img {
+    max-height: 500px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.container {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 150vh;
+}
+
+form {
+    background: transparent;
+    padding: 1.5rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form .form-control {
+    margin-bottom: 1rem;
+}
+
+form .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+form .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+iframe {
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info p {
+    margin: 0;
+    padding: 0.5rem 0;
+}
+
+.container {
+    margin-top: 2rem;
+}
+
+
+
+p {
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.container p:last-child {
+    margin-bottom: 0;
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.footer {
+    text-align: center;
+    padding: 1rem;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+h1, h2, h3.dark-mode {
+    color: #ffffff;
+}
+body.dark-mode .card-title {
+    color: #000000;
+}
+
+.form-label.dark-mode{
+    color: #000000;
+}
+
+.main-content {
+    flex-grow: 1;
+}

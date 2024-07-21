@@ -1,0 +1,30 @@
+{% extends "core/layout.html" %}
+
+{% block content %}
+<h2>Manage Genres and SubGenres</h2>
+<a href="{% url 'catalogue:add_genre' %}" class="btn btn-success">Add New Genre</a>
+<a href="{% url 'catalogue:add_subgenre' %}" class="btn btn-success">Add New SubGenre</a>
+<h3>All Genres</h3>
+<ul>
+    <!-- Loop through each genre in the genres queryset -->
+    {% for genre in genres %}
+        <li>
+            {{ genre.name }}
+            <!-- Button to delete the genre -->
+            <a href="{% url 'catalogue:delete_genre' genre.id %}" class="btn btn-danger">Delete</a>
+        </li>
+    {% endfor %}
+</ul>
+<h3>All SubGenres</h3>
+<ul>
+    <!-- Loop through each genre in the subgenres queryset -->
+    {% for subgenre in subgenres %}
+        <li>
+            <!-- Display the subgenre name and its parent genre -->
+            {{ subgenre.name }} ({{ subgenre.genre.name }})
+
+            <a href="{% url 'catalogue:delete_subgenre' subgenre.id %}" class="btn btn-danger">Delete</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "core/layout.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<div class="profile-container text-center">
+    <div class="profile-header">
+        {% load static %}
+        <!-- Checks if the user has a profile image -->
+        {% if user.profile.profile_image %}
+            <!-- Displays the user's profile image, styled as a rounded circle -->
+            <!-- If the user does not have a profile image, display a default image -->
+            <img src="{{ user.profile.profile_image.url }}" alt="Profile Image" class="profile-image rounded-circle">
+        {% else %}
+            <img src="{% static 'images/blank-default-pfp-wue0zko1dfxs9z2c.jpg' %}" alt="Default Profile Image" class="profile-image rounded-circle">
+        {% endif %}
+        <h2>{{ user.username }}</h2>
+    </div>
+    <div class="profile-bio">
+        <p>{{ user.profile.bio }}</p>
+    </div>
+    <div class="profile-update-form">
+        <form method="POST" enctype="multipart/form-data">
+            <!-- Adds a CSRF token for security -->
+            <!-- Renders the form fields as paragraphs -->
+            {% csrf_token %}
+            {{ p_form.as_p }}
+            <button type="submit" class="btn btn-primary">Update Profile</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

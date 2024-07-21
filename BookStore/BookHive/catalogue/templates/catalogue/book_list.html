@@ -1,0 +1,32 @@
+{% extends "core/layout.html" %}
+
+{% block title %}All Books{% endblock %}
+
+{% block content %}
+<h1>All Books</h1>
+<div id="book-list" class="row mt-4">
+    {% load static %}
+    {% if books %}
+        {% for book in books %}
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    {% if book.cover_image %}
+                        <img class="card-img-top" src="{{ book.cover_image.url }}" alt="{{ book.title }}">
+                    {% else %}
+                        <img class="card-img-top" src="{% static 'images/cover-coming-soon.png' %}" alt="Cover Coming Soon">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ book.title }}</h5>
+                        <p class="card-text">by {{ book.author }}</p>
+                        <a href="{% url 'catalogue:book_detail' book.pk %}" class="btn btn-primary">View Details</a>
+                        <button class="btn btn-success add-to-cart" data-book-id="{{ book.id }}" data-book-title="{{ book.title }}" data-book-author="{{ book.author }}">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No books found.</p>
+    {% endif %}
+</div>
+{% endblock %}
+
